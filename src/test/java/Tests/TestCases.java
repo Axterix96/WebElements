@@ -1,6 +1,8 @@
 package Tests;
 
 import POM.PomManager;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import io.qameta.allure.Description;
 import io.qameta.allure.Issue;
@@ -17,11 +19,9 @@ import static io.qameta.allure.SeverityLevel.NORMAL;
 
 public class TestCases extends BaseTest{
 
-    PomManager pomManager = new PomManager(getDriver(), wait);
-
 @Test(groups={"userStory1"},priority = 1)
 public void testFindFruit()
-{
+{PomManager pomManager = new PomManager(threadDriver.get(),threadWait.get());
 List<String> fruits = pomManager.homePageDemo.listFruits();
 pomManager.homePageDemo.searchFruits(fruits);
 }
@@ -34,6 +34,7 @@ pomManager.homePageDemo.searchFruits(fruits);
 @TmsLink("TMS-001")
 public void testDeleteChefOrder()
 {
+    PomManager pomManager = new PomManager(threadDriver.get(), threadWait.get());
     pomManager.homePageDemo.goToDinner();
     pomManager.homePageDinner.clickOkCookie();
     List<String> chefsList = pomManager.homePageDinner.listChefs();
@@ -43,7 +44,7 @@ public void testDeleteChefOrder()
 
 @Test(groups={"userStory3"},priority = 3)
     public void testDeletePancakes()
-{
+{PomManager pomManager = new PomManager(threadDriver.get(), threadWait.get());
     pomManager.homePageDemo.goToDinner();
     pomManager.homePageDinner.clickOkCookie();
     boolean pancakesDeleted = pomManager.homePageDinner.deletePancakes();
@@ -52,7 +53,7 @@ public void testDeleteChefOrder()
 
 @Test(groups={"userStory4"}, priority = 4)
 public void testMultiCheck()
-{
+{PomManager pomManager = new PomManager(threadDriver.get(), threadWait.get());
     pomManager.homePageDemo.goToDinner();
     pomManager.homePageDemo.clickOkCookie();
     pomManager.homePageDemo.searchFruitsMulticheck();

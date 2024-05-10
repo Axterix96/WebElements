@@ -2,10 +2,13 @@ package Tests;
 
 import POM.BasePage;
 import io.qameta.allure.Allure;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
 public class ListenerClass extends BaseTest implements ITestListener {
+
     @Override
     public void onTestFailure(ITestResult result) {
         System.out.println("Test failed");

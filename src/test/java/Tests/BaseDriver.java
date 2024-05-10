@@ -15,7 +15,7 @@ public class BaseDriver{
     public WebDriverWait wait;
 
 
-    public WebDriver initializeDriver(String browser) throws IOException {
+    public  WebDriver initializeDriver(String browser) throws IOException {
 
         if (browser.equalsIgnoreCase("chrome")) {
 
@@ -32,8 +32,11 @@ public class BaseDriver{
            return driver = new FirefoxDriver();
 
         }
-        wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+
 return driver;
     }
 
+    public WebDriverWait getWait() {
+        return wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+    }
 }
