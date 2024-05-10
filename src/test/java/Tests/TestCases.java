@@ -1,6 +1,8 @@
 package Tests;
 
 import POM.PomManager;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import io.qameta.allure.Description;
 import io.qameta.allure.Issue;
@@ -17,9 +19,12 @@ import static io.qameta.allure.SeverityLevel.NORMAL;
 
 public class TestCases extends BaseTest{
 
-    PomManager pomManager = new PomManager(getDriver(), wait);
+    public TestCases(WebDriver driver, WebDriverWait wait) {
+        super(driver, wait);
+    }
+    PomManager pomManager = new PomManager(driver, wait);
 
-@Test(groups={"userStory1"},priority = 1)
+    @Test(groups={"userStory1"},priority = 1)
 public void testFindFruit()
 {
 List<String> fruits = pomManager.homePageDemo.listFruits();

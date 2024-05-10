@@ -6,6 +6,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.io.FileHandler;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
@@ -16,21 +17,21 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class BaseTest extends BaseDriver {
+    public BaseTest(WebDriver driver, WebDriverWait wait) {
+        super(driver, wait);
+    }
 
-    ThreadLocal<WebDriver> threadLocalDriver = new ThreadLocal<>();
 
     @Parameters("browser")
     @BeforeMethod(alwaysRun = true)
     public void Setup(String browser) throws IOException {
-        threadLocalDriver.set( initializeDriver(browser));
-        getDriver().manage().window().maximize();
-        getDriver().get("https://demowf.aspnetawesome.com/");
-        BasePage basePage = new BasePage(getDriver(),wait);
+        initializeDriver(browser);
+        driver.manage().window().maximize();
+        driver.get("https://demowf.aspnetawesome.com/");
+        BasePage basePage = new BasePage(driver,wait);
 
     }
-    public  WebDriver getDriver(){
-        return threadLocalDriver.get();
-    }
+
     public void captureScreenshot(String methodName)
     {
         try
@@ -52,8 +53,7 @@ public class BaseTest extends BaseDriver {
     @AfterMethod(alwaysRun = true)
     public void cleanup()
     {
-        getDriver().quit();
-        threadLocalDriver.remove();
+        driver.quit();
         System.out.println("After Test Thread ID: "+Thread.currentThread().getId());
     }
 
