@@ -1,0 +1,38 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite" verbose="1"  parallel="tests" thread-count="2">
+    <listeners>
+        <listener class-name="Tests.ListenerClass"></listener>
+    </listeners>
+    <test name="ChromeTest" >
+        <parameter name="browser" value="Chrome"></parameter>
+        <groups>
+            <run>
+                <include name="userStory1"/>
+                <include name="userStory2"/>
+                <include name="userStory3"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="Tests.TestCases" ></class>
+        </classes>
+    </test>
+
+    <test name="FirefoxTest" >
+        <parameter name="browser" value="Firefox"></parameter>
+        <groups>
+            <run>
+                <include name="userStory1"/>
+                <include name="userStory2"/>
+                <include name="userStory3"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="Tests.TestCases" ></class>
+        </classes>
+    </test>
+
+
+</suite>
