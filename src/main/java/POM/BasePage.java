@@ -8,7 +8,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BasePage implements HomePageDinnerLocators {
 
-
     public  WebDriver driver;
     public  WebDriverWait wait;
 

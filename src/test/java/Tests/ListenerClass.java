@@ -8,9 +8,6 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 
 public class ListenerClass extends BaseTest implements ITestListener {
-    public ListenerClass(WebDriver driver, WebDriverWait wait) {
-        super(driver, wait);
-    }
 
     @Override
     public void onTestFailure(ITestResult result) {

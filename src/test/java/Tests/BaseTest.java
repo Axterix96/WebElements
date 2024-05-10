@@ -17,21 +17,22 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class BaseTest extends BaseDriver {
-    public BaseTest(WebDriver driver, WebDriverWait wait) {
-        super(driver, wait);
-    }
-
+    protected static ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
+    protected static ThreadLocal<WebDriverWait> threadWait = new ThreadLocal<>();
 
     @Parameters("browser")
     @BeforeMethod(alwaysRun = true)
     public void Setup(String browser) throws IOException {
-        initializeDriver(browser);
-        driver.manage().window().maximize();
-        driver.get("https://demowf.aspnetawesome.com/");
-        BasePage basePage = new BasePage(driver,wait);
+        threadDriver.set(initializeDriver(browser));
+        threadWait.set(getWait());
+        getDriver().manage().window().maximize();
+        getDriver().get("https://demowf.aspnetawesome.com/");
+
 
     }
-
+    public static WebDriver getDriver(){
+        return threadDriver.get();
+    }
     public void captureScreenshot(String methodName)
     {
         try
@@ -53,8 +54,9 @@ public class BaseTest extends BaseDriver {
     @AfterMethod(alwaysRun = true)
     public void cleanup()
     {
-        driver.quit();
+       threadDriver.get().quit();
         System.out.println("After Test Thread ID: "+Thread.currentThread().getId());
+        threadDriver.remove();
     }
 
 
