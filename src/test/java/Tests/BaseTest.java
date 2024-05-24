@@ -1,6 +1,6 @@
 package Tests;
 
-import POM.BasePage;
+
 import io.qameta.allure.Attachment;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -17,22 +17,20 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class BaseTest extends BaseDriver {
-    protected static ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
-    protected static ThreadLocal<WebDriverWait> threadWait = new ThreadLocal<>();
+    protected  ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
+    protected  ThreadLocal<WebDriverWait> threadWait = new ThreadLocal<>();
 
     @Parameters("browser")
     @BeforeMethod(alwaysRun = true)
     public void Setup(String browser) throws IOException {
         threadDriver.set(initializeDriver(browser));
         threadWait.set(getWait());
-        getDriver().manage().window().maximize();
-        getDriver().get("https://demowf.aspnetawesome.com/");
+        threadDriver.get().manage().window().maximize();
+        threadDriver.get().get("https://demowf.aspnetawesome.com/");
 
 
     }
-    public static WebDriver getDriver(){
-        return threadDriver.get();
-    }
+
     public void captureScreenshot(String methodName)
     {
         try

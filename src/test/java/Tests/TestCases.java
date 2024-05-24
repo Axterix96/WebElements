@@ -1,12 +1,9 @@
 package Tests;
 
 import POM.PomManager;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import io.qameta.allure.Description;
 import io.qameta.allure.Issue;
-import io.qameta.allure.Link;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.TmsLink;
@@ -39,7 +36,7 @@ public void testDeleteChefOrder()
     pomManager.homePageDinner.clickOkCookie();
     List<String> chefsList = pomManager.homePageDinner.listChefs();
     boolean ordersDeleted = pomManager.homePageDinner.deleteOrdersByChef(chefsList);
-    Assert.assertFalse(ordersDeleted, "You didn't delete the Chef's order");
+    Assert.assertTrue(ordersDeleted, "You didn't delete the Chef's order");
 }
 
 @Test(groups={"userStory3"},priority = 3)

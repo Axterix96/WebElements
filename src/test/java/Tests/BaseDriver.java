@@ -14,11 +14,6 @@ public class BaseDriver{
 
     public WebDriverWait wait;
 
-    public BaseDriver(WebDriver driver, WebDriverWait wait) {
-        this.driver = driver;
-        this.wait = wait;
-    }
-
     public  WebDriver initializeDriver(String browser) throws IOException {
 
         if (browser.equalsIgnoreCase("chrome")) {

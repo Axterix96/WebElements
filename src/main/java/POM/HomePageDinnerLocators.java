@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 
 public interface HomePageDinnerLocators {
 
-    By popUp = By.xpath("//label[contains(text(),'Name')]");
+    By inputPopUp = By.id("editdinnersGridName-awed");
 
     By listOrders = By.xpath("//div[@class='fl']");
 
@@ -12,7 +12,6 @@ public interface HomePageDinnerLocators {
 
     By editOptions = By.xpath("//button[contains(text(),'Edit')]");
 
-    By okBtnCookie = By.id("btnCookie");
 
     By spanPancakes = By.xpath("//span[contains(text(),'pancakes')]");
 

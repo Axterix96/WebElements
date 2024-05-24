@@ -79,7 +79,8 @@ public class HomePageDinner extends BasePage implements HomePageDinnerLocators{
             for (int i = 0; i < editElements.size(); i++) {
                 wait.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(editElements.get(i))));
                 editElements.get(i).click();
-                wait.until(ExpectedConditions.visibilityOfElementLocated(popUp));
+                wait.until(ExpectedConditions.visibilityOfElementLocated(inputPopUp));
+
                 if (elementExists(spanPancakes)) {
                     wait.until(ExpectedConditions.elementToBeClickable(spanPancakes));
                     driver.findElement(spanPancakesRemove).click();
